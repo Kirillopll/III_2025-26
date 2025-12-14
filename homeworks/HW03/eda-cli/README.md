@@ -37,6 +37,12 @@ uv run eda-cli overview data/example.csv
 
 ### Полный EDA-отчёт
 
+
+uv run eda-cli report data/example.csv --out-dir reports_example \
+  --max-hist-columns 8 --top-k-categories 10 \
+  --title "HW03 report" --min-missing-share 0.2
+
+
 ```bash
 uv run eda-cli report data/example.csv --out-dir reports
 ```

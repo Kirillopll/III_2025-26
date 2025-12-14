@@ -170,7 +170,11 @@ def top_categories(
     return result
 
 
-def compute_quality_flags(summary: DatasetSummary, missing_df: pd.DataFrame) -> Dict[str, Any]:
+def compute_quality_flags(
+    summary: DatasetSummary,
+    missing_df: pd.DataFrame,
+    zero_share_threshold: float = 0.5,
+) -> Dict[str, Any]:
     """
     Простейшие эвристики «качества» данных:
     - слишком много пропусков;
@@ -185,18 +189,47 @@ def compute_quality_flags(summary: DatasetSummary, missing_df: pd.DataFrame) -> 
     flags["max_missing_share"] = max_missing_share
     flags["too_many_missing"] = max_missing_share > 0.5
 
-    # Простейший «скор» качества
+    # --- новая эвристика 1: константные колонки (unique <= 1) ---
+    constant_columns = [
+        col_summary.name
+        for col_summary in summary.columns
+        if col_summary.unique <= 1
+    ]
+    flags["has_constant_columns"] = len(constant_columns) > 0
+    flags["constant_columns"] = constant_columns
+
+    # --- новая эвристика 2: много нулей в числовых колонках ---
+    # долю нулей придётся оценивать по метаданным, здесь используем
+    # простую эвристику: если min == 0 или max == 0 и колонка числовая.
+    zero_heavy_columns: List[str] = []
+    for col_summary in summary.columns:
+        if not col_summary.is_numeric:
+            continue
+        if col_summary.min == 0 or col_summary.max == 0:
+            zero_heavy_columns.append(col_summary.name)
+
+    flags["has_many_zero_values"] = len(zero_heavy_columns) > 0
+    flags["zero_heavy_columns"] = zero_heavy_columns
+    flags["zero_share_threshold"] = zero_share_threshold
+
+    # --- интегральный скор качества ---
     score = 1.0
-    score -= max_missing_share  # чем больше пропусков, тем хуже
-    if summary.n_rows < 100:
+    score -= max_missing_share
+
+    if flags["too_few_rows"]:
         score -= 0.2
-    if summary.n_cols > 100:
+    if flags["too_many_columns"]:
+        score -= 0.1
+    if flags["has_constant_columns"]:
+        score -= 0.1
+    if flags["has_many_zero_values"]:
         score -= 0.1
 
     score = max(0.0, min(1.0, score))
     flags["quality_score"] = score
 
     return flags
+
 
 
 def flatten_summary_for_print(summary: DatasetSummary) -> pd.DataFrame:

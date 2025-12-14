@@ -59,6 +59,19 @@ def overview(
     typer.echo("\nКолонки:")
     typer.echo(summary_df.to_string(index=False))
 
+@app.command()
+def head(
+    path: str = typer.Argument(..., help="Путь к CSV-файлу."),
+    n: int = typer.Option(5, help="Сколько первых строк вывести."),
+    sep: str = typer.Option(",", help="Разделитель в CSV."),
+    encoding: str = typer.Option("utf-8", help="Кодировка файла."),
+) -> None:
+    """
+    Показать первые n строк датасета.
+    """
+    df = _load_csv(Path(path), sep=sep, encoding=encoding)
+    typer.echo(df.head(n).to_string(index=False))
+
 
 @app.command()
 def report(
@@ -66,8 +79,21 @@ def report(
     out_dir: str = typer.Option("reports", help="Каталог для отчёта."),
     sep: str = typer.Option(",", help="Разделитель в CSV."),
     encoding: str = typer.Option("utf-8", help="Кодировка файла."),
-    max_hist_columns: int = typer.Option(6, help="Максимум числовых колонок для гистограмм."),
+    max_hist_columns: int = typer.Option(
+        6, help="Максимум числовых колонок для гистограмм."
+    ),
+    top_k_categories: int = typer.Option(
+        5, help="Сколько top значений сохранять для категориальных признаков."
+    ),
+    title: str = typer.Option(
+        "EDA-отчёт", help="Заголовок отчёта (используется в начале report.md)."
+    ),
+    min_missing_share: float = typer.Option(
+        0.1,
+        help="Порог доли пропусков, выше которого колонка считается проблемной.",
+    ),
 ) -> None:
+    
     """
     Сгенерировать полный EDA-отчёт:
     - текстовый overview и summary по колонкам (CSV/Markdown);
@@ -86,7 +112,7 @@ def report(
     summary_df = flatten_summary_for_print(summary)
     missing_df = missing_table(df)
     corr_df = correlation_matrix(df)
-    top_cats = top_categories(df)
+    top_cats = top_categories(df, top_k=top_k_categories)
 
     # 2. Качество в целом
     quality_flags = compute_quality_flags(summary, missing_df)
@@ -102,7 +128,7 @@ def report(
     # 4. Markdown-отчёт
     md_path = out_root / "report.md"
     with md_path.open("w", encoding="utf-8") as f:
-        f.write(f"# EDA-отчёт\n\n")
+        f.write(f"# {title}\n\n")
         f.write(f"Исходный файл: `{Path(path).name}`\n\n")
         f.write(f"Строк: **{summary.n_rows}**, столбцов: **{summary.n_cols}**\n\n")
 
@@ -117,6 +143,8 @@ def report(
         f.write("См. файл `summary.csv`.\n\n")
 
         f.write("## Пропуски\n\n")
+        f.write(
+            f"Колонка считается проблемной, если доля пропусков ≥ {min_missing_share:.0%}.\n\n")
         if missing_df.empty:
             f.write("Пропусков нет или датасет пуст.\n\n")
         else:
