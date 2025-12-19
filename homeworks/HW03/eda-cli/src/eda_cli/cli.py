@@ -66,7 +66,7 @@ def head(
     sep: str = typer.Option(",", help="Разделитель в CSV."),
     encoding: str = typer.Option("utf-8", help="Кодировка файла."),
 ) -> None:
-    """
+    """ 
     Показать первые n строк датасета.
     """
     df = _load_csv(Path(path), sep=sep, encoding=encoding)
@@ -134,10 +134,23 @@ def report(
 
         f.write("## Качество данных (эвристики)\n\n")
         f.write(f"- Оценка качества: **{quality_flags['quality_score']:.2f}**\n")
-        f.write(f"- Макс. доля пропусков по колонке: **{quality_flags['max_missing_share']:.2%}**\n")
+        f.write(
+            f"- Макс. доля пропусков по колонке: "
+            f"**{quality_flags['max_missing_share']:.2%}**\n"
+        )
         f.write(f"- Слишком мало строк: **{quality_flags['too_few_rows']}**\n")
         f.write(f"- Слишком много колонок: **{quality_flags['too_many_columns']}**\n")
-        f.write(f"- Слишком много пропусков: **{quality_flags['too_many_missing']}**\n\n")
+        f.write(f"- Слишком много пропусков: **{quality_flags['too_many_missing']}**\n")
+        f.write(
+            f"- Константные колонки: **{quality_flags['has_constant_columns']}**; "
+            f"список: {', '.join(quality_flags['constant_columns']) or 'нет'}\n"
+        )
+        f.write(
+            f"- Колонки с большим числом нулей: "
+            f"**{quality_flags['has_many_zero_values']}**; "
+            f"порог по нулям: {quality_flags['zero_share_threshold']:.0%}; "
+            f"список: {', '.join(quality_flags['zero_heavy_columns']) or 'нет'}\n\n"
+        )
 
         f.write("## Колонки\n\n")
         f.write("См. файл `summary.csv`.\n\n")
