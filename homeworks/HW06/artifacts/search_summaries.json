@@ -1,7 +1,10 @@
 {
   "decision_tree": {
+    "ccp_alpha": 0.0,
     "max_depth": 10,
-    "min_samples_leaf": 10
+    "max_leaf_nodes": null,
+    "min_samples_leaf": 10,
+    "min_samples_split": 2
   },
   "random_forest": {
     "max_depth": null,
