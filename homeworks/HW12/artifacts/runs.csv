@@ -1,0 +1,5 @@
+experiment_id,task,dataset,seed,split_summary,window_size,horizon,model_summary,features_summary,scaler,optimizer,lr,epochs_trained,best_val_mae,best_val_rmse,best_val_mape,test_mae,test_rmse,test_mape,notes
+B1,forecasting,S12-hw-dataset.csv,42,0.70/0.15/0.15,,1,naive-last,last_value,,,,0,6.438500772797526,8.196911140247455,4.391461399335978,6.34095826893354,8.060187080029195,4.146298982666311,
+B2,forecasting,S12-hw-dataset.csv,42,0.70/0.15/0.15,,1,moving-average-7,rolling_mean_7,,,,0,12.702012786596118,15.217644526713752,8.81686403093607,12.74030864197531,15.238698825884764,8.549006329583134,
+B3,forecasting,S12-hw-dataset.csv,42,0.70/0.15/0.15,,1,Ridge,"lag_1, lag_7, lag_14, rolling_mean_7, rolling_std_7, day_of_week",StandardScaler(X_train only),,,0,7.188729774210055,8.73228185697505,4.7966889202939855,7.337461526950438,9.045723611677673,4.6994171929498885,
+R1,forecasting,S12-hw-dataset.csv,42,0.70/0.15/0.15,14.0,1,"GRU(hidden=64, layers=1)",sequence_window_14,StandardScaler(train target only),Adam,0.001,13,6.182077407836914,7.794437371405814,4.151219367980957,6.552131175994873,8.349936260048636,4.23187255859375,
