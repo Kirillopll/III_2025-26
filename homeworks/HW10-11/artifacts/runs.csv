@@ -1,6 +1,7 @@
 experiment_id,task,dataset,seed,model_summary,optimizer,lr,epochs_trained,best_val_accuracy,test_accuracy,precision,recall,mean_iou,notes
-C1,classification,STL10,42,SimpleCNN baseline,Adam,0.001,2,0.509,0.5199,,,,baseline
-C2,classification,STL10,42,SimpleCNN + augmentation,Adam,0.001,2,0.4428,0.4597,,,,augmentation
-C3,classification,STL10,42,ResNet18 pretrained head-only,Adam,0.001,1,0.6963,0.7067,,,,transfer learning head-only
-C4,classification,STL10,42,ResNet18 fine-tune layer4+fc,Adam,0.0001,1,0.8252,0.8139,,,,fine-tuning
-S1,segmentation,OxfordIIITPet,42,"FCN-ResNet50 pretrained, binary pet-vs-background",,,0,,,0.3134,1.0,0.3134,evaluation-only
+C1,classification,STL10,42,simple-cnn-base,Adam,0.001,10.0,0.474,,,,,Best val acc 0.4740
+C2,classification,STL10,42,simple-cnn-aug,Adam,0.001,10.0,0.518,,,,,Best val acc 0.5180
+C3,classification,STL10,42,resnet18-head-only,Adam,0.001,10.0,0.915,,,,,Best val acc 0.9150
+C4,classification,STL10,42,resnet18-finetune,Adam,0.0001,10.0,0.946,0.9443,,,,Best val acc 0.9460
+V1,segmentation,OxfordIIITPet,42,FCN_ResNet50,,,,,,0.7472,0.9739,0.7307,V1 argmax foreground>0
+V2,segmentation,OxfordIIITPet,42,FCN_ResNet50,,,,,,0.6169,0.9906,0.6128,V2 threshold on foreground prob 0.3
