@@ -1,0 +1,23 @@
+{
+  "dataset": "emotion",
+  "num_classes": 6,
+  "train_size": 6000,
+  "validation_size": 1000,
+  "test_size": 2000,
+  "base_model_for_finetuning": "distilbert-base-uncased",
+  "pretrained_inference_model": "distilbert-base-uncased-finetuned-sst-2-english",
+  "max_length": 128,
+  "train_batch_size": 8,
+  "eval_batch_size": 8,
+  "num_epochs": 2,
+  "learning_rate": 2e-05,
+  "weight_decay": 0.01,
+  "seed": 42,
+  "device": "cpu",
+  "test_accuracy": 0.916,
+  "test_f1_macro": 0.863388,
+  "artifacts": {
+    "sample_predictions_csv": "c:\\Users\\kiril\\OneDrive\\Desktop\\ИИИ\\REP\\III_2025-26\\homeworks\\HW13\\artifacts\\sample_predictions.csv",
+    "confusion_matrix_png": "c:\\Users\\kiril\\OneDrive\\Desktop\\ИИИ\\REP\\III_2025-26\\homeworks\\HW13\\artifacts\\confusion_matrix.png"
+  }
+}
