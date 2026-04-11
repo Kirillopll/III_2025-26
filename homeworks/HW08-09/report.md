@@ -27,7 +27,7 @@ O3 — SGD с momentum и weight decay
 
 Используемые библиотеки:
 
-- Python 3
+- Python 3.12
 - torch
 - torchvision
 - numpy
