@@ -1,0 +1,4 @@
+query,before_retrieved_sources,after_retrieved_sources,changed
+Как бронировать слот на GPU?,sec_01 | sec_10 | sec_11,update_001 | update_003 | sec_01,True
+Что делает политика fair-share?,sec_01 | sec_10 | sec_09,update_002 | update_003 | sec_01,True
+Что означает OOM на GPU?,sec_09 | sec_01 | sec_10,update_001 | update_003 | sec_09,True

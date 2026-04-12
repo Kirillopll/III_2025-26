@@ -1,0 +1,35 @@
+{
+  "seed": 42,
+  "model_name": "all-MiniLM-L6-v2",
+  "device": "cpu",
+  "n_documents_before_update": 12,
+  "n_documents_after_update": 15,
+  "chunk_size": 90,
+  "overlap": 20,
+  "top_k": 3,
+  "n_chunks_before_update": 12,
+  "n_chunks_after_update": 15,
+  "retrieval_metrics": {
+    "hit_at_k": 1.0,
+    "recall_at_k": 1.0,
+    "mrr_at_k": 0.85,
+    "n_queries": 10,
+    "top_k": 3
+  },
+  "experiment_summary": [
+    {
+      "chunk_size": 90,
+      "n_chunks": 12,
+      "hit_at_k": 1.0,
+      "recall_at_k": 1.0,
+      "mrr_at_k": 0.85
+    },
+    {
+      "chunk_size": 60,
+      "n_chunks": 13,
+      "hit_at_k": 1.0,
+      "recall_at_k": 1.0,
+      "mrr_at_k": 0.5666666666666667
+    }
+  ]
+}
