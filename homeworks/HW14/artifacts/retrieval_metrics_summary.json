@@ -2,6 +2,8 @@
   "seed": 42,
   "model_name": "all-MiniLM-L6-v2",
   "device": "cpu",
+  "faiss_index_type_before_update": "IndexFlatIP",
+  "faiss_index_type_after_update": "IndexFlatIP",
   "n_documents_before_update": 12,
   "n_documents_after_update": 15,
   "chunk_size": 90,
