@@ -1,0 +1,15 @@
+.env
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.venv/
+data/raw/*
+data/processed/*
+artifacts/*.joblib
+artifacts/*.pkl
+artifacts/*.json
+!data/raw/.gitkeep
+!data/processed/.gitkeep
+!artifacts/README.md

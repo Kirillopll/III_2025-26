@@ -1,0 +1,14 @@
+from __future__ import annotations
+
+
+SAMPLE_FEATURES = {
+    "AMT_INCOME_TOTAL": 202500.0,
+    "AMT_CREDIT": 406597.5,
+    "AMT_ANNUITY": 24700.5,
+    "DAYS_BIRTH": -9461,
+    "DAYS_EMPLOYED": -637,
+    "CNT_CHILDREN": 0,
+    "CODE_GENDER": "M",
+    "FLAG_OWN_CAR": "N",
+    "NAME_CONTRACT_TYPE": "Cash loans",
+}
