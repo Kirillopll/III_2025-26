@@ -1,26 +1,31 @@
 # Чеклист самопроверки
 
 - [x] Есть понятная прикладная задача.
-- [x] Используется открытый датасет.
-- [x] Данные лежат отдельно и не коммитятся.
-- [x] Есть скрипт первичной проверки данных.
-- [x] Есть preprocessing pipeline.
+- [x] Используется открытый датасет Kaggle.
+- [x] Большие исходные данные не коммитятся.
+- [x] Есть единый конфиг `configs/config.yaml`.
+- [x] Есть модуль `src/data/` для загрузки данных.
+- [x] Есть модуль `src/features/` для подготовки признаков.
 - [x] Есть baseline-модель.
 - [x] Есть несколько ML-моделей для сравнения.
-- [x] Есть метрики качества.
+- [x] Есть метрики качества в `artifacts/metrics.csv` и `artifacts/metrics.json`.
 - [x] Есть автоматический выбор лучшей модели.
-- [x] Модель сохраняется как артефакт.
-- [x] Есть FastAPI-сервис.
-- [x] Есть эндпоинт `/predict`.
-- [x] Есть эндпоинт `/health`.
-- [x] Есть эндпоинт `/model-info`.
-- [x] Есть эндпоинт `/metrics`.
-- [x] Есть базовое логирование.
-- [x] Есть конфиг `configs/model.yaml`.
-- [x] Есть `.env.example`.
-- [x] Секреты не хранятся в репозитории.
-- [x] Есть Dockerfile.
-- [x] Есть docker-compose.
+- [x] Модель сохраняется в `artifacts/model.joblib`.
+- [x] Есть `artifacts/model_metadata.json`.
+- [x] Есть графики и таблицы для отчёта в `artifacts/`.
+- [x] Есть FastAPI-сервис в `src/service/`.
+- [x] Есть HTML-страница `GET /`.
+- [x] Есть эндпоинт `GET /health`.
+- [x] Есть эндпоинт `GET /model-info`.
+- [x] Есть эндпоинт `POST /predict`.
+- [x] Есть эндпоинт `POST /predict-batch`.
+- [x] Есть Swagger UI `GET /docs`.
+- [x] Есть sample-запросы в `data/sample_predict.json` и `data/sample_batch_predict.json`.
+- [x] Есть notebooks для EDA и экспериментов.
 - [x] Есть pytest-тесты.
+- [x] Есть `Dockerfile`.
+- [x] Есть `.dockerignore`.
+- [x] Есть `.env.example`.
+- [x] Есть `SECURITY.md`.
 - [x] Есть `README.md` с инструкциями запуска.
-- [x] Есть отчёт `report.md`.
+- [x] Есть `report.md` по шаблону проекта.

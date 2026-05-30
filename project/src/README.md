@@ -1,17 +1,20 @@
 # src
 
-Основной код проекта находится в пакете `credit_risk_service`.
+Основной код проекта организован как в эталонном проекте:
 
 ```text
-credit_risk_service/
-  api/   # FastAPI-приложение и pydantic-схемы
-  core/  # конфигурация и логирование
-  ml/    # обучение, пайплайн признаков и модуль предсказаний
+src/
+  data/       # проверка наличия и загрузка данных
+  features/   # подготовка признаков
+  models/     # обучение модели и инференс
+  service/    # FastAPI-сервис и HTML-страница
+  config.py   # чтение configs/config.yaml
+  train.py    # точка входа для обучения
 ```
 
-Главные команды:
+Основные команды:
 
 ```bash
-python -m credit_risk_service.ml.train
-uvicorn credit_risk_service.api.main:app --reload
+python -m src.train
+python -m src.service
 ```

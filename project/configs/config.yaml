@@ -1,0 +1,70 @@
+project:
+  name: credit-risk-scoring
+  random_state: 42
+
+data:
+  raw_dir: "data/raw"
+  train_csv: "data/raw/application_train.csv"
+  test_csv: "data/raw/application_test.csv"
+  sample_csv: "data/sample_application.csv"
+  sample_size: 500
+  max_rows: 20000
+
+split:
+  train_size: 0.70
+  validation_size: 0.15
+  test_size: 0.15
+
+features:
+  categorical:
+    - NAME_CONTRACT_TYPE
+    - CODE_GENDER
+    - FLAG_OWN_CAR
+    - NAME_INCOME_TYPE
+    - NAME_EDUCATION_TYPE
+    - NAME_FAMILY_STATUS
+    - NAME_HOUSING_TYPE
+    - WEEKDAY_APPR_PROCESS_START
+    - ORGANIZATION_TYPE
+  numeric:
+    - CNT_CHILDREN
+    - AMT_INCOME_TOTAL
+    - AMT_CREDIT
+    - AMT_ANNUITY
+    - DAYS_BIRTH
+    - DAYS_EMPLOYED
+    - HOUR_APPR_PROCESS_START
+    - EXT_SOURCE_2
+    - EXT_SOURCE_3
+  target: TARGET
+
+models:
+  logistic_regression:
+    max_iter: 1000
+    class_weight: balanced
+  random_forest:
+    n_estimators: 120
+    max_depth: 10
+    min_samples_leaf: 5
+    n_jobs: -1
+
+artifacts:
+  dir: "artifacts"
+  model_path: "artifacts/model.joblib"
+  metadata_path: "artifacts/model_metadata.json"
+  metrics_json: "artifacts/metrics.json"
+  metrics_csv: "artifacts/metrics.csv"
+  predictions_csv: "artifacts/test_predictions.csv"
+  feature_importance_csv: "artifacts/feature_importance.csv"
+  error_by_hour_csv: "artifacts/error_by_hour.csv"
+  default_by_hour_plot: "artifacts/default_by_hour.png"
+  prediction_plot: "artifacts/prediction_vs_actual.png"
+  feature_importance_plot: "artifacts/feature_importance.png"
+  error_by_hour_plot: "artifacts/error_by_hour.png"
+
+service:
+  host: "127.0.0.1"
+  port: 8000
+  log_level: "info"
+  low_risk_threshold: 0.10
+  high_risk_threshold: 0.25

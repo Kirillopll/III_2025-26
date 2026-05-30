@@ -7,9 +7,8 @@ __pycache__/
 .venv/
 data/raw/*
 data/processed/*
-artifacts/*.joblib
-artifacts/*.pkl
-artifacts/*.json
 !data/raw/.gitkeep
 !data/processed/.gitkeep
-!artifacts/README.md
+__pycache__/
+*.egg-info/
+artifacts/uvicorn*.log

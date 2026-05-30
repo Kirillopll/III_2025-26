@@ -1,0 +1,73 @@
+{
+  "project": "credit-risk-scoring",
+  "trained_at": "2026-05-30T14:40:24.112705+00:00",
+  "dataset": "Kaggle Home Credit Default Risk, application_train.csv",
+  "target": "TARGET",
+  "features": {
+    "categorical": [
+      "NAME_CONTRACT_TYPE",
+      "CODE_GENDER",
+      "FLAG_OWN_CAR",
+      "NAME_INCOME_TYPE",
+      "NAME_EDUCATION_TYPE",
+      "NAME_FAMILY_STATUS",
+      "NAME_HOUSING_TYPE",
+      "WEEKDAY_APPR_PROCESS_START",
+      "ORGANIZATION_TYPE"
+    ],
+    "numeric": [
+      "CNT_CHILDREN",
+      "AMT_INCOME_TOTAL",
+      "AMT_CREDIT",
+      "AMT_ANNUITY",
+      "DAYS_BIRTH",
+      "DAYS_EMPLOYED",
+      "HOUR_APPR_PROCESS_START",
+      "EXT_SOURCE_2",
+      "EXT_SOURCE_3"
+    ],
+    "target": "TARGET"
+  },
+  "final_model": "random_forest",
+  "validation_results": [
+    {
+      "model": "dummy_prior",
+      "split": "validation",
+      "roc_auc": 0.5,
+      "average_precision": 0.079,
+      "accuracy": 0.921,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0
+    },
+    {
+      "model": "logistic_regression",
+      "split": "validation",
+      "roc_auc": 0.7315,
+      "average_precision": 0.1918,
+      "accuracy": 0.6833,
+      "precision": 0.1453,
+      "recall": 0.616,
+      "f1": 0.2351
+    },
+    {
+      "model": "random_forest",
+      "split": "validation",
+      "roc_auc": 0.7234,
+      "average_precision": 0.1931,
+      "accuracy": 0.815,
+      "precision": 0.1954,
+      "recall": 0.4304,
+      "f1": 0.2688
+    }
+  ],
+  "test_metrics": {
+    "roc_auc": 0.7471,
+    "average_precision": 0.1973,
+    "accuracy": 0.81,
+    "precision": 0.1967,
+    "recall": 0.4557,
+    "f1": 0.2748
+  },
+  "model_path": "artifacts/model.joblib"
+}

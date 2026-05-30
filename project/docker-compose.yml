@@ -4,7 +4,7 @@ services:
     ports:
       - "8000:8000"
     environment:
-      MODEL_PATH: artifacts/credit_risk_model.joblib
+      MODEL_PATH: artifacts/model.joblib
       LOW_RISK_THRESHOLD: "0.10"
       HIGH_RISK_THRESHOLD: "0.25"
     volumes:
