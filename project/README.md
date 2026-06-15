@@ -45,10 +45,11 @@ project/
 
 ## 3. Установка
 
-PowerShell без активации окружения:
+Команды выполняются из корня папки `project`.
+
+PowerShell без активации окружения, если `.venv` уже создан:
 
 ```powershell
-Set-Location "P:\учеба\ИИИ\REP\III_2025-26\project"
 .\.venv\Scripts\python.exe -m pip install -r requirements.txt
 ```
 
@@ -61,6 +62,7 @@ python -m venv .venv
 ```
 
 ---
+
 
 ## 4. Данные
 
